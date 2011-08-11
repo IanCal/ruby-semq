@@ -1,6 +1,6 @@
 require 'net/http'
 
-class Semq
+class SemqClient
 
     def initialize(server, queue)
         @server = server
