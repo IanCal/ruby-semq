@@ -5,7 +5,7 @@ This is a ruby gem to support getting items from a semq queue and pushing items 
 Usage:
 
 Create a new queue with the server location and queue name
-queue = new Semq("http://localhost:8080/", "myMessageQueue")
+queue = new Semq("http://localhost:8080", "myMessageQueue")
 
 Put an item in a queue.
 queue.push("A string")
