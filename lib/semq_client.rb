@@ -36,11 +36,24 @@ class SemqClient
         end
     end
 
+    def allQueuesOnServer
+        url = URI.parse(@server + "/queues")
+        req = Net::HTTP::Get.new(url.path)
+        res = Net::HTTP.start(url.host, url.port) {|http|
+            http.request(req)
+        }
+        case res
+        when Net::HTTPSuccess
+            return res.body
+        else
+            return nil
+        end
+    end
 
     private
 
     def constructQueueUrl
-        URI.parse(@server + '/' + @queue)
+        URI.parse(@server + '/queue/' + @queue)
     end
 
     def getNextItem
