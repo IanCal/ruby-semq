@@ -22,6 +22,21 @@ class SemqClient
         http.post(url.path, message)
     end
 
+    def clear
+        url = constructQueueUrl
+        req = Net::HTTP::Delete.new(url.path)
+        res = Net::HTTP.start(url.host, url.port) {|http|
+            http.request(req)
+        }
+        case res
+        when Net::HTTPSuccess
+            return true
+        else
+            return false
+        end
+    end
+
+
     private
 
     def constructQueueUrl
